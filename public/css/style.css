@@ -1,6 +1,20 @@
-body {
-    background-color:#000000;
-}
-h1, h2, p, form label, span {
-    color: #ffffff;
-}
+    /* Styles CSS */
+    .image-reduite {
+        width:125px;
+        /* Largeur souhaitée */
+        height:125px;
+        /* Hauteur souhaitée */
+    }
+
+    .logo-gauche {
+        margin-left: 0;
+    }
+
+    .navbar-custom {
+        min-height: 40px; /* Hauteur personnalisée pour la navbar */
+    }
+
+    .navbar-center {
+        display: flex;
+        justify-content: center;
+    }
