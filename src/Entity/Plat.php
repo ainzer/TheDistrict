@@ -14,11 +14,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 
-
-
-/**
- * @ORM\Entity(repositoryClass=PlatRepository::class)
- */
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
 class Plat
 {
@@ -46,7 +41,7 @@ class Plat
     #[ORM\Column(length: 255)]
     private ?string $active = null;
 
-    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plat')]
+    #[ORM\OneToMany(mappedBy: 'plat', targetEntity: Detail::class)]
     private Collection $detail;
 
     public function __construct()
@@ -143,7 +138,7 @@ class Plat
     {
         if (!$this->detail->contains($detail)) {
             $this->detail->add($detail);
-            $detail->setPlat($this);
+            $detail->setPlats($this);
         }
 
         return $this;
@@ -153,8 +148,8 @@ class Plat
     {
         if ($this->detail->removeElement($detail)) {
             // set the owning side to null (unless already changed)
-            if ($detail->getPlat() === $this) {
-                $detail->setPlat(null);
+            if ($detail->getPlats() === $this) {
+                $detail->setPlats(null);
             }
         }
 

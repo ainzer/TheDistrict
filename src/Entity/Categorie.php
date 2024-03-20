@@ -6,6 +6,9 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+
+
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -74,9 +77,9 @@ class Categorie
     }
 
     /**
-     * @return Collection<int, Plat>
+     * @return Collection<int, Plats>
      */
-    public function getPlat(): Collection
+    public function getPlats(): Collection
     {
         return $this->plats;
     }
@@ -102,4 +105,10 @@ class Categorie
 
         return $this;
     }
+
+
+public function __toString(): string
+{
+    return $this->libelle ?? '';
+}
 }
