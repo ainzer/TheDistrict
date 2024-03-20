@@ -1,0 +1,151 @@
+.bg-custom-color {
+    background-color: #970747 !important;
+    border: 3px solid #FEF4E8 !important;
+}
+
+.logo {
+    width: 125px !important;
+    border-radius: 25px !important;
+}
+
+.color-title {
+    color: #FEF4E8 !important;
+}
+
+.color-heading {
+    color: #FEF4E8 !important;
+    border-radius: 0 15px !important;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: #1a1a1a !important;
+}
+
+.color-btn {
+    color: transparent !important;
+    background-color: #FEF4E8 !important;
+    border-color: #1a1a1a !important;
+    border-radius: 0 15px !important;
+    border-width: 3px !important;
+}
+
+.color-search {
+    background-color: #FEF4E8 !important;
+    color: #970747 !important;
+    border-color: #1a1a1a !important;
+    border-width: 3px !important;
+    border-radius: 0 15px !important;
+}
+
+.mod-search {
+    background-color: #FEF4E8 !important;
+    border-color: #1a1a1a !important;
+    border-width: 3px !important;
+    border-radius: 15px !important;
+}
+
+.navbar-nav {
+    margin: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.foot {
+    background-color: #970747 !important;
+    border-radius: 15px !important;
+    border: 3px solid !important;
+    border-color: #FEF4E8 !important;
+}
+
+.mod-rs {
+    color: #FEF4E8 !important;
+    font-size: 60px !important;
+}
+
+.col-btn {
+    color: #FEF4E8 !important;
+}
+
+.col-btn:hover {
+    color: #FEF4E8 !important;
+}
+
+/* .parallax {
+    margin: 0;
+    padding: 0;
+    background: url('../image/bg.jpg'); Chemin vers ton image de fond
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+ } */
+
+/* .parallax .parallax-bg::before {
+    content: "";
+    background: url('../image/bg.jpg'); Chemin vers ton image avec opacité 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3; Ajuste l'opacité selon tes besoins, 0.5 représente 50% d'opacité
+ } */
+
+.mod-video {
+    border: 3px solid #FEF4E8 !important;
+    background-color: #970747 !important;
+}
+
+.card {
+    border: 3px solid #FEF4E8 !important;
+    background-color: #970747 !important;
+    width: 305px !important;
+    color: #FEF4E8 !important;
+    text-align: center !important;
+}
+
+.card-img {
+    height: 200px !important;
+    width: 300px !important;
+}
+
+/* Ajouter un effet de zoom aux images au survol */
+.zoom-image {
+    transition: transform 0.2s !important;
+}
+
+.zoom-image:hover {
+    transform: scale(1.1) !important;
+}
+
+.dark-theme {
+    background-color: #1a1a1a;
+    /* Couleur de fond sombre */
+    color: #ffffff;
+    /* Couleur du texte */
+}
+
+.btn-commande {
+    background-color: #970747;
+    color: #FEF4E8;
+    border-color: #FEF4E8;
+}
+
+.btn-commande:hover {
+    background-color: #970747;
+    color: #FEF4E8;
+    border-color: #FEF4E8;
+}
+
+.btn-mod {
+    background-color: #970747;
+    color: #FEF4E8;
+    border-color: #FEF4E8;
+}
+
+label {
+    color: #FEF4E8;
+}
