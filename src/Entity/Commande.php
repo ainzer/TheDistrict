@@ -36,6 +36,8 @@ class Commande
         $this->details = new ArrayCollection();
     }
 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,4 +127,5 @@ class Commande
 
         return $this;
     }
+
 }

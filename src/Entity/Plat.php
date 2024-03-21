@@ -31,16 +31,18 @@ class Plat
     #[ORM\Column]
     private ?bool $active = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plats')]
-    private ?categorie $categorie = null;
+    #[ORM\ManyToOne(inversedBy: 'plat')]
+    private ?Categorie $categorie = null;
 
-    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plats')]
-    private Collection $details;
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plat')]
+    private Collection $detail;
 
     public function __construct()
     {
-        $this->details = new ArrayCollection();
+        $this->detail = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -114,12 +116,12 @@ class Plat
         return $this;
     }
 
-    public function getCategorie(): ?categorie
+    public function getCategorie(): ?Categorie
     {
         return $this->categorie;
     }
 
-    public function setCategorie(?categorie $categorie): static
+    public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
 
@@ -129,15 +131,15 @@ class Plat
     /**
      * @return Collection<int, Detail>
      */
-    public function getDetails(): Collection
+    public function getDetail(): Collection
     {
-        return $this->details;
+        return $this->detail;
     }
 
     public function addDetail(Detail $detail): static
     {
-        if (!$this->details->contains($detail)) {
-            $this->details->add($detail);
+        if (!$this->detail->contains($detail)) {
+            $this->detail->add($detail);
             $detail->setPlat($this);
         }
 
@@ -146,7 +148,7 @@ class Plat
 
     public function removeDetail(Detail $detail): static
     {
-        if ($this->details->removeElement($detail)) {
+        if ($this->detail->removeElement($detail)) {
             // set the owning side to null (unless already changed)
             if ($detail->getPlat() === $this) {
                 $detail->setPlat(null);
@@ -155,4 +157,5 @@ class Plat
 
         return $this;
     }
+
 }

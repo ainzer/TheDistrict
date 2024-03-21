@@ -25,12 +25,13 @@ class Categorie
     private ?bool $active = null;
 
     #[ORM\OneToMany(targetEntity: Plat::class, mappedBy: 'categorie')]
-    private Collection $plats;
+    private Collection $plat;
 
     public function __construct()
     {
-        $this->plats = new ArrayCollection();
+        $this->plat = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -83,15 +84,15 @@ class Categorie
     /**
      * @return Collection<int, Plat>
      */
-    public function getPlats(): Collection
+    public function getPlat(): Collection
     {
-        return $this->plats;
+        return $this->plat;
     }
 
     public function addPlat(Plat $plat): static
     {
-        if (!$this->plats->contains($plat)) {
-            $this->plats->add($plat);
+        if (!$this->plat->contains($plat)) {
+            $this->plat->add($plat);
             $plat->setCategorie($this);
         }
 
@@ -100,7 +101,7 @@ class Categorie
 
     public function removePlat(Plat $plat): static
     {
-        if ($this->plats->removeElement($plat)) {
+        if ($this->plat->removeElement($plat)) {
             // set the owning side to null (unless already changed)
             if ($plat->getCategorie() === $this) {
                 $plat->setCategorie(null);
@@ -109,4 +110,5 @@ class Categorie
 
         return $this;
     }
+
 }
