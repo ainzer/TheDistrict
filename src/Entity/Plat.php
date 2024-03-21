@@ -3,16 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\PlatRepository;
-use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
 class Plat
@@ -22,36 +16,42 @@ class Plat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $libelle = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: "decimal", precision: 10, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $prix = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $image = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plat')]
-    #[ORM\JoinColumn(name: 'categorie_id', referencedColumnName: 'id')]
-    private ?Categorie $categorie = null;
+    #[ORM\Column]
+    private ?bool $active = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $active = null;
+    #[ORM\ManyToOne(inversedBy: 'plats')]
+    private ?categorie $categorie = null;
 
-    #[ORM\OneToMany(mappedBy: 'plat', targetEntity: Detail::class)]
-    private Collection $detail;
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plats')]
+    private Collection $details;
 
     public function __construct()
     {
-        $this->detail = new ArrayCollection();
+        $this->details = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getLibelle(): ?string
@@ -102,24 +102,24 @@ class Plat
         return $this;
     }
 
-    public function getActive(): ?string
+    public function isActive(): ?bool
     {
         return $this->active;
     }
 
-    public function setActive(string $active): static
+    public function setActive(bool $active): static
     {
         $this->active = $active;
 
         return $this;
     }
 
-    public function getCategorie(): ?Categorie
+    public function getCategorie(): ?categorie
     {
         return $this->categorie;
     }
 
-    public function setCategorie(?Categorie $categorie): static
+    public function setCategorie(?categorie $categorie): static
     {
         $this->categorie = $categorie;
 
@@ -129,16 +129,16 @@ class Plat
     /**
      * @return Collection<int, Detail>
      */
-    public function getDetail(): Collection
+    public function getDetails(): Collection
     {
-        return $this->detail;
+        return $this->details;
     }
 
     public function addDetail(Detail $detail): static
     {
-        if (!$this->detail->contains($detail)) {
-            $this->detail->add($detail);
-            $detail->setPlats($this);
+        if (!$this->details->contains($detail)) {
+            $this->details->add($detail);
+            $detail->setPlat($this);
         }
 
         return $this;
@@ -146,10 +146,10 @@ class Plat
 
     public function removeDetail(Detail $detail): static
     {
-        if ($this->detail->removeElement($detail)) {
+        if ($this->details->removeElement($detail)) {
             // set the owning side to null (unless already changed)
-            if ($detail->getPlats() === $this) {
-                $detail->setPlats(null);
+            if ($detail->getPlat() === $this) {
+                $detail->setPlat(null);
             }
         }
 

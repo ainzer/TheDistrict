@@ -6,9 +6,6 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
-
-
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -24,10 +21,10 @@ class Categorie
     #[ORM\Column(length: 50)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $active = null;
+    #[ORM\Column]
+    private ?bool $active = null;
 
-    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Plat::class)]
+    #[ORM\OneToMany(targetEntity: Plat::class, mappedBy: 'categorie')]
     private Collection $plats;
 
     public function __construct()
@@ -38,6 +35,13 @@ class Categorie
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getLibelle(): ?string
@@ -64,12 +68,12 @@ class Categorie
         return $this;
     }
 
-    public function getActive(): ?string
+    public function isActive(): ?bool
     {
         return $this->active;
     }
 
-    public function setActive(string $active): static
+    public function setActive(bool $active): static
     {
         $this->active = $active;
 
@@ -77,7 +81,7 @@ class Categorie
     }
 
     /**
-     * @return Collection<int, Plats>
+     * @return Collection<int, Plat>
      */
     public function getPlats(): Collection
     {
@@ -105,10 +109,4 @@ class Categorie
 
         return $this;
     }
-
-
-public function __toString(): string
-{
-    return $this->libelle ?? '';
-}
 }

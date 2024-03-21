@@ -5,12 +5,9 @@ namespace App\Entity;
 use App\Repository\CommandeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-// use ApiPlatform\Metadata\ApiResource;
 
-
-
-// #[ApiResource]
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
 {
@@ -19,20 +16,20 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'datetime')]
-    private ?\DateTime $date_commande = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $date_commande = null;
 
-    #[ORM\Column(type: 'float')]
-    private ?float $total = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    private ?string $total = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $etat = null;
+    #[ORM\Column]
+    private ?int $etat = null;
 
-    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Detail::class)]
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'commande')]
     private Collection $details;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
-    private ?Utilisateur $utilisateur = null;
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -43,6 +40,7 @@ class Commande
     {
         return $this->id;
     }
+
     public function setId(int $id): static
     {
         $this->id = $id;
@@ -50,36 +48,36 @@ class Commande
         return $this;
     }
 
-    public function getDateCommande(): ?\DateTime
+    public function getDateCommande(): ?\DateTimeInterface
     {
         return $this->date_commande;
     }
 
-    public function setDateCommande(\DateTime $date_commande): static
+    public function setDateCommande(\DateTimeInterface $date_commande): static
     {
         $this->date_commande = $date_commande;
 
         return $this;
     }
 
-    public function getTotal(): ?float
+    public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    public function setTotal(float $total): static
+    public function setTotal(string $total): static
     {
         $this->total = $total;
 
         return $this;
     }
 
-    public function getEtat(): ?string
+    public function getEtat(): ?int
     {
         return $this->etat;
     }
 
-    public function setEtat(string $etat): static
+    public function setEtat(int $etat): static
     {
         $this->etat = $etat;
 
@@ -116,14 +114,14 @@ class Commande
         return $this;
     }
 
-    public function getUtilisateur(): ?Utilisateur
+    public function getUser(): ?User
     {
-        return $this->utilisateur;
+        return $this->user;
     }
 
-    public function setUtilisateur(?Utilisateur $utilisateur): static
+    public function setUser(?User $user): static
     {
-        $this->utilisateur = $utilisateur;
+        $this->user = $user;
 
         return $this;
     }
