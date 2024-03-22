@@ -20,8 +20,6 @@ class AccueilController extends AbstractController
         
     }
 
-    
-   
     #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
