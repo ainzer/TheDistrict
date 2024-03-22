@@ -48,7 +48,7 @@ class BDDFixtures extends Fixture
         $categorie4 = new Categorie();
 
         $categorie4->setLibelle("Pasta");
-        $categorie4->setImage("pasta_cat.jng");
+        $categorie4->setImage("pasta_cat.jpg");
         $categorie4->setActive(1);
 
         $manager->persist($categorie4);
@@ -58,7 +58,7 @@ class BDDFixtures extends Fixture
         $categorie5 = new Categorie();
 
         $categorie5->setLibelle("Sandwich");
-        $categorie5->setImage("sandwich_cat.jng");
+        $categorie5->setImage("sandwich_cat.jpg");
         $categorie5->setActive(0);
 
         $manager->persist($categorie5);
@@ -68,7 +68,7 @@ class BDDFixtures extends Fixture
         $categorie6 = new Categorie();
 
         $categorie6->setLibelle("Asian Food");
-        $categorie6->setImage("asian_food_cat.jng");
+        $categorie6->setImage("asian_food_cat.jpg");
         $categorie6->setActive(0);
 
         $manager->persist($categorie6);
@@ -78,7 +78,7 @@ class BDDFixtures extends Fixture
         $categorie7 = new Categorie();
 
         $categorie7->setLibelle("Salade");
-        $categorie7->setImage("salade_cat.jng");
+        $categorie7->setImage("salade_cat.jpg");
         $categorie7->setActive(1);
 
         $manager->persist($categorie7);
@@ -88,7 +88,7 @@ class BDDFixtures extends Fixture
         $categorie8 = new Categorie();
 
         $categorie8->setLibelle("Veggie");
-        $categorie8->setImage("veggie_cat.jng");
+        $categorie8->setImage("veggie_cat.jpg");
         $categorie8->setActive(1);
 
         $manager->persist($categorie8);
