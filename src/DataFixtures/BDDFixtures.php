@@ -223,5 +223,8 @@ class BDDFixtures extends Fixture
         $manager -> persist ($plat10);
         $manager -> flush ();
 
+
+        
+
     }
 }

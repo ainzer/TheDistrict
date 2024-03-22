@@ -17,8 +17,11 @@ class AccueilController extends AbstractController
     {
         $this->CategorieRepository = $CategorieRepository;
         $this->PlatRepository = $PlatRepository;
+        
     }
 
+    
+   
     #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
