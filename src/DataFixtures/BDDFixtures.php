@@ -224,7 +224,5 @@ class BDDFixtures extends Fixture
         $manager -> flush ();
 
 
-        
-
     }
 }
