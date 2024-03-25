@@ -84,7 +84,7 @@ class Categorie
     /**
      * @return Collection<int, Plat>
      */
-    public function getPlat(): Collection
+    public function getPlats(): Collection
     {
         return $this->plat;
     }

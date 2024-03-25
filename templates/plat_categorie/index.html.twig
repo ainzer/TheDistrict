@@ -10,9 +10,9 @@
                 <div class="card">
                     <img src="{{ asset('/Img/food/' ~ plat . image) }}" class="card-img-top card-img" alt="Image du plat">
                     <div class="card-body">
-                        <h5 class="card-title">' . $plat['libelle'] . '</h5>
-                        <p class="card-text">' . $plat['description'] . '</p>
-                        <p class="card-text">Prix: ' . $plat['prix'] . ' €</p>
+                        <h5 class="card-title">{{ plat . libelle }}</h5>
+                        <p class="card-text">{{ plat . description }}</p>
+                        <p class="card-text">Prix: {{ plat . prix }} €</p>
                         <a href="commande.php?plat_id=' . $plat['id'] . '" class="btn btn-primary btn-mod">Passer une commande</a>
                     </div>
                 </div>
