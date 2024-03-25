@@ -3,18 +3,23 @@
 {% block title %}Hello PlatCategorieController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/tony/Bureau/TheDistrict/src/Controller/PlatCategorieController.php</code></li>
-        <li>Your template at <code>/home/tony/Bureau/TheDistrict/templates/plat_categorie/index.html.twig</code></li>
-    </ul>
+<div class="container-fluid mt-3 row">
+{% if plats is defined and plats is not empty %}
+{% for plat in plats %}
+            <div class="col-md-4 d-flex justify-content-center mb-4">
+                <div class="card">
+                    <img src="{{ asset('/Img/food/' ~ plat . image) }}" class="card-img-top card-img" alt="Image du plat">
+                    <div class="card-body">
+                        <h5 class="card-title">' . $plat['libelle'] . '</h5>
+                        <p class="card-text">' . $plat['description'] . '</p>
+                        <p class="card-text">Prix: ' . $plat['prix'] . ' €</p>
+                        <a href="commande.php?plat_id=' . $plat['id'] . '" class="btn btn-primary btn-mod">Passer une commande</a>
+                    </div>
+                </div>
+            </div>
+{% endfor %}
+{% else %}
+<p>Cette catégorie ne contient pas encore de plat</p>
+{% endif %}
 </div>
 {% endblock %}

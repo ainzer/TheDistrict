@@ -3,18 +3,21 @@
 {% block title %}Hello CategorieController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container-fluid mt-3 row">
+        <!-- Affichage des catégories les plus populaires -->
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {% for categorie in categorie %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/tony/Bureau/TheDistrict/src/Controller/CategorieController.php</code></li>
-        <li>Your template at <code>/home/tony/Bureau/TheDistrict/templates/categorie/index.html.twig</code></li>
-    </ul>
-</div>
+            <div class="col-md-4 d-flex justify-content-center  mb-4">
+                <div class="card zoom-image">
+                    <img src="{{ asset('/Img/category/' ~ categorie . image )}}" class="card-img-top card-img" alt="Image de la carte">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ categorie . libelle }}</h5>
+                        <a href="{{ path('app_platsC', {'categorie_id': categorie.id}) }}" class="btn btn-primary btn-mod">Tous les Plats</a>
+                    </div>
+                </div>
+            </div>
+        
+        {% endfor %}
+    </div>
 {% endblock %}
