@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Plat;
@@ -19,7 +20,7 @@ class PanierController extends AbstractController
         $data = [];
         $total = 0;
 
-        foreach($panier as $id => $quantity){
+        foreach ($panier as $id => $quantity) {
             $plat = $platRepository->find($id);
 
             $data[] = [
@@ -43,14 +44,39 @@ class PanierController extends AbstractController
 
         // On ajoute le produit dans le panier s'il n'y est pas encore
         // Sinon on incrémente sa quantité
-        if(empty($panier[$id])){
+        if (empty($panier[$id])) {
             $panier[$id] = 1;
-        }else{
+        } else {
             $panier[$id]++;
         }
 
         $session->set('panier', $panier);
-        
+
+        // On redirige vers la page du panier
+        return $this->redirectToRoute('panier_index');
+    }
+
+    #[Route('/retirer/{id}', name: 'retirer')]
+    public function remove(Plat $plat, SessionInterface $session)
+    {
+        // On récupère l'id du produi
+        $id = $plat->getId();
+
+        // On récupère le panier existant
+        $panier = $session->get('panier', []);
+
+        // On retire le produit du panier s'il n'y a qu'1 exemplaire
+        // Sinon on décrémente sa quantité
+        if (!empty($panier[$id])) {
+            if ($panier[$id] > 1) {
+                $panier[$id]--;
+            } else {
+                unset($panier[$id]);
+            }
+        }
+
+        $session->set('panier', $panier);
+
         // On redirige vers la page du panier
         return $this->redirectToRoute('panier_index');
     }
