@@ -33,7 +33,7 @@ class PanierController extends AbstractController
         return $this->render('panier/index.html.twig', compact('data', 'total'));
     }
 
-    #[Route('/ajout/{id}', name: 'ajout')]
+    #[Route('/ajout/{id}', name: 'add')]
     public function add(Plat $plat, SessionInterface $session)
     {
         // On récupère l'id du produit
@@ -56,7 +56,7 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('panier_index');
     }
 
-    #[Route('/retirer/{id}', name: 'retirer')]
+    #[Route('/retirer/{id}', name: 'remove')]
     public function remove(Plat $plat, SessionInterface $session)
     {
         // On récupère l'id du produi
@@ -81,7 +81,7 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('panier_index');
     }
 
-    #[Route('/supprimer/{id}', name: 'supprimer')]
+    #[Route('/supprimer/{id}', name: 'delete')]
     public function delete(Plat $plat, SessionInterface $session)
     {
         // On récupère l'id du produi
@@ -102,7 +102,7 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('panier_index');
     }
 
-    #[Route('/vide', name: 'vide')]
+    #[Route('/vide', name: 'empty')]
     public function empty(SessionInterface $session)
     {
         $session->remove('panier');
