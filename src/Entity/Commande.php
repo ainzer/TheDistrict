@@ -31,6 +31,7 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commande')]
     private ?Utilisateur $utilisateur = null;
 
+   
 
     public function __construct()
     {
@@ -128,5 +129,7 @@ class Commande
 
         return $this;
     }
+
+
 
 }
