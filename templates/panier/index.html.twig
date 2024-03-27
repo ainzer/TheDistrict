@@ -27,7 +27,7 @@
 								<td>
 									<a href="{{ path('panier_ajout', {id: element.plat.id}) }}" class="btn btn-success">+</a>
 									<a href="{{ path('panier_retirer', {id: element.plat.id}) }}" class="btn btn-warning">-</a>
-									<a href="#" class="btn btn-danger">Supprimer</a>
+									<a href="{{ path('panier_supprimer', {id: element.plat.id}) }}" class="btn btn-danger">Supprimer</a>
 								</td>
 							</tr>
 						{% else %}
@@ -39,9 +39,10 @@
 					<tfoot>
 						<tr>
 							<td colspan="3">Total</td>
-							<td>{{ total }} €</td>
+							<td>{{ total }}
+								€</td>
 							<td>
-								<a href="" class="btn btn-danger">Vider</a>
+								<a href="{{ path('panier_vide') }}" class="btn btn-danger">Vider</a>
 							</td>
 						</tr>
 					</tfoot>

@@ -80,4 +80,33 @@ class PanierController extends AbstractController
         // On redirige vers la page du panier
         return $this->redirectToRoute('panier_index');
     }
+
+    #[Route('/supprimer/{id}', name: 'supprimer')]
+    public function delete(Plat $plat, SessionInterface $session)
+    {
+        // On récupère l'id du produi
+        $id = $plat->getId();
+
+        // On récupère le panier existant
+        $panier = $session->get('panier', []);
+
+        // On retire le produit du panier s'il n'y a qu'1 exemplaire
+        // Sinon on décrémente sa quantité
+        if (!empty($panier[$id])) {
+            unset($panier[$id]); 
+        }
+
+        $session->set('panier', $panier);
+
+        // On redirige vers la page du panier
+        return $this->redirectToRoute('panier_index');
+    }
+
+    #[Route('/vide', name: 'vide')]
+    public function empty(SessionInterface $session)
+    {
+        $session->remove('panier');
+
+        return $this->redirectToRoute('panier_index');
+    }
 }

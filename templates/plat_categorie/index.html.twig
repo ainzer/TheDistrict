@@ -1,23 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container-fluid mt-3 row">
-{% if plats is defined and plats is not empty %}
-{% for plat in plats %}
-            <div class="col-md-4 d-flex justify-content-center mb-4">
-                <div class="card">
-                    <img src="{{ asset('/Img/food/' ~ plat . image) }}" class="card-img-top card-img" alt="Image du plat">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ plat . libelle }}</h5>
-                        <p class="card-text">{{ plat . description }}</p>
-                        <p class="card-text">Prix: {{ plat . prix }} €</p>
-                        <a href="#" class="btn btn-primary btn-mod">Ajouter au panier</a>
-                    </div>
-                </div>
-            </div>
-{% endfor %}
-{% else %}
-<p>Cette catégorie ne contient pas encore de plat</p>
-{% endif %}
-</div>
+	<div class="container-fluid mt-3 row">
+		{% if plats is defined and plats is not empty %}
+			{% for plat in plats %}
+				<div class="col-md-4 d-flex justify-content-center mb-4">
+					<div class="card">
+						<img src="{{ asset('/Img/food/' ~ plat . image) }}" class="card-img-top card-img" alt="Image du plat">
+						<div class="card-body">
+							<h5 class="card-title">{{ plat . libelle }}</h5>
+							<p class="card-text">{{ plat . description }}</p>
+							<p class="card-text">Prix:
+								{{ plat . prix }}
+								€</p>
+							<a href="{{ path('panier_ajout', {id: plat.id}) }}" class="btn btn-primary btn-mod">Ajouter au panier</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>Cette catégorie ne contient pas encore de plat</p>
+		{% endif %}
+	</div>
 {% endblock %}
