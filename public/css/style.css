@@ -146,6 +146,12 @@
     border-color: #FEF4E8;
 }
 
+.btn-mod:hover {
+    background-color: #FEF4E8;
+    color: #970747;
+    border-color: #1a1a1a;
+}
+
 label {
     color: #FEF4E8;
 }

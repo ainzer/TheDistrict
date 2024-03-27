@@ -8,7 +8,7 @@
 
             <div class="col-md-4 d-flex justify-content-center  mb-4">
                 <div class="card zoom-image">
-                    <img src="{{ asset('/Img/category/' ~ categorie . image )}}" class="card-img-top card-img" alt="Image de la carte">
+                    <img src="{{ asset('/img/category/' ~ categorie . image )}}" class="card-img-top card-img" alt="Image de la carte">
                     <div class="card-body">
                         <h5 class="card-title">{{ categorie . libelle }}</h5>
                         <a href="{{ path('app_platsC', {'categorie_id': categorie.id}) }}" class="btn btn-primary btn-mod">Tous les Plats</a>
