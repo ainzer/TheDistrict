@@ -2,46 +2,56 @@
 
 
 {% block body %}
-	<form method="post">
-		{% if error %}
-			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-		{% endif %}
+	<section class="container">
 
-		{% if app.user %}
-			<div class="mb-3">
-				Vous êtes déjà connecté(e) en tant que
-				{{ app.user.userIdentifier }},
-				<a href="{{ path('app_logout') }}">Me déconnecter</a>
-			</div>
-		{% endif %}
+    <div class="row justify-content-center">
 
+        <div class="col-6">
 
-		<h1 class="h3 mb-3 font-weight-normal">Me connecter</h1>
-		<div>
-			<label for="inputEmail">Email</label>
-			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-		</div>
-		<div>
-			<label for="inputPassword">Mod de passe</label>
-			<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-		</div>
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                {% if app.user %}
+                    <div class="mb-3">
+                        Vous êtes connecté(e) en tant que {{ app.user.prenom }}, <a href="{{ path('app_logout') }}" class="btn btn-mod">Se déconnecter</a>
+                    </div>
+                {% endif %}
 
-		<div class="checkbox mb-3">
-			<label>
-				<input type="checkbox" name="_remember_me">
-				Remember me
-			</label>
-		</div>
+                <h1 class="h3 mb-3 font-weight-normal">Me connecter</h1>
+                <label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                <label for="inputPassword">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-		<button class="btn btn-lg btn-primary" type="submit">
-			Me connercter
-		</button>
-		<p>
-			<a href="#">Mod de passe oublié</a>
-		</p>
-		<p>Pas encore inscrit(e)<a href="{{ path('app_register') }}">M'inscrire</a>
-		</p>
-	</form>
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                <div class="checkbox mb-3">
+
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                    </label>
+                
+                </div>
+
+                <div class="d-flex justify-content-center mb-3">
+
+                    <button class="btn btn-mod me-2" type="submit">
+                        Se connecter
+                    </button>
+
+                    <a href="{{ path('app_register')}}" class="btn btn-mod">S'inscrire</a>
+
+                </div>
+
+            </form>
+        
+        </div>
+    
+    </div>
+
+</section>
 {% endblock %}
