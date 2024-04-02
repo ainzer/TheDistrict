@@ -1,20 +1,48 @@
-
 {% extends 'base.html.twig' %}
 
+{% block title %}Commande{% endblock %}
 
 {% block body %}
-<section class="container my-3 beige">
-    <div class="row">
-        <div class="col-lg-8 col-12 mx-auto">
-            <h1>Formulaire de commande</h1>
+
+<section class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-6">
+
+            <h1>Validation de la commande</h1>
+
             {{ form_start(commandeForm) }}
-            {{ form_row(commandeForm.adresseLivraison) }}
-            {{ form_row(commandeForm.adresseFacturation) }}
-            {{ form_row(commandeForm.MoyenPaiement) }}
+
+            {{ form_row(commandeForm.adresseLivraison, {label: 'Adresse de Livraison :'}) }}
+
+            {{ form_row(commandeForm.adresseFacturation, {label: 'Adresse de Facturation :'}) }}
+
+            {{ form_row(commandeForm.MoyenPaiement, {label: 'Moyen de Paiement :'}) }}
+
+            {{ form_row(commandeForm.NomCarte, {label: 'Nom du propriétaire de la carte :'}) }}
+
+            {{ form_row(commandeForm.NumeroCarte, {label: 'Numéros de la carte :'}) }}
+
+            {{ form_row(commandeForm.DateExpiration, {label: 'Date d\'Expiration :'}) }}
+
+            {{ form_row(commandeForm.CCV, {label: 'CCV :'}) }}
+
             {{ form_row(commandeForm.RGPDConsent) }}
-            <button type="submit" class="btn btn-primary">Valider la commande</button>
+
+            <div class="d-flex justify-content-center my-3">
+
+                    <button type="submit" class="btn btn-md btn-mod">Valider</button>
+
+                </div>
+
             {{ form_end(commandeForm) }}
+
         </div>
+    
     </div>
-<section>
+
+</section>
+
+
 {% endblock %}
