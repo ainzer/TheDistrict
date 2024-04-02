@@ -7,6 +7,7 @@ use App\Entity\Categorie;
 use App\Entity\Detail;
 use App\Entity\Commande;
 use App\Entity\Plat;
+use App\Entity\Utilisateur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -93,6 +94,37 @@ class BDDFixtures extends Fixture
 
         $manager->persist($categorie8);
         $manager->flush();
+
+        
+        $categorie9 = new Categorie();
+
+        $categorie9->setLibelle("Soupes");
+        $categorie9->setImage("soupe_cat.jpg");
+        $categorie9->setActive(1);
+
+        $manager->persist($categorie9);
+        $manager->flush();
+
+
+        $categorie10 = new Categorie();
+
+        $categorie10->setLibelle("Desserts");
+        $categorie10->setImage("desserts_cat.jpg");
+        $categorie10->setActive(1);
+
+        $manager->persist($categorie10);
+        $manager->flush();
+
+
+        $categorie11 = new Categorie();
+
+        $categorie11->setLibelle("Boissons");
+        $categorie11->setImage("boissons_cat.jpeg");
+        $categorie11->setActive(1);
+
+        $manager->persist($categorie11);
+        $manager->flush();
+
 
         $plat1 = new Plat();
 
@@ -224,5 +256,68 @@ class BDDFixtures extends Fixture
         $manager -> flush ();
 
 
+        $plat11 = new Plat();
+
+        $plat11 -> setCategorie ($categorie9);
+        $plat11 -> setLibelle("Soupe à l'oignon");
+        $plat11 -> setDescription ("Une soupe chaude et réconfortante à base d'oignons caramélisés, de bouillon de bœuf et de pain grillé avec du fromage fondu sur le dessus.");
+        $plat11 -> setPrix(10);
+        $plat11 -> setImage ("french_onion_soup.jpeg");
+        $plat11 -> setActive (1);
+
+        $manager -> persist ($plat11);
+        $manager -> flush ();
+
+
+        $plat12 = new Plat();
+
+        $plat12 -> setCategorie ($categorie9);
+        $plat12 -> setLibelle("Gazpacho Andalou");
+        $plat12 -> setDescription ("Une soupe froide rafraîchissante à base de tomates mûres, de concombres, de poivrons, d'oignons, d'ail et d'huile d'olive.");
+        $plat12 -> setPrix(11);
+        $plat12 -> setImage ("gazpacho.jpeg");
+        $plat12 -> setActive (1);
+
+        $manager -> persist ($plat12);
+        $manager -> flush ();
+
+
+        $plat13 = new Plat();
+
+        $plat13 -> setCategorie ($categorie10);
+        $plat13 -> setLibelle("Tiramisu");
+        $plat13 -> setDescription ("Un dessert italien classique composé de couches de biscuits imbibés de café, de crème mascarpone et saupoudré de cacao en poudre.");
+        $plat13 -> setPrix(8);
+        $plat13 -> setImage ("tiramisu.jpg");
+        $plat13 -> setActive (1);
+
+        $manager -> persist ($plat13);
+        $manager -> flush ();
+
+
+        $plat14 = new Plat();
+
+        $plat14 -> setCategorie ($categorie10);
+        $plat14 -> setLibelle("Crème Brûlée");
+        $plat14 -> setDescription ("Un dessert français classique composé de crème vanillée cuite, recouverte d'une couche de sucre caramélisé à la surface.");
+        $plat14 -> setPrix(7);
+        $plat14 -> setImage ("creme_brulee.jpg");
+        $plat14 -> setActive (1);
+
+        $manager -> persist ($plat14);
+        $manager -> flush ();
+
+
+        $plat15 = new Plat();
+
+        $plat15 -> setCategorie ($categorie11);
+        $plat15 -> setLibelle("Limonade Maison");
+        $plat15 -> setDescription ("Une boisson rafraîchissante faite maison à base de jus de citron frais, de sucre, d'eau et de glace, parfait pour se désaltérer pendant les journées chaudes.");
+        $plat15 -> setPrix(4);
+        $plat15 -> setImage ("limonade.jpg");
+        $plat15 -> setActive (1);
+
+        $manager -> persist ($plat15);
+        $manager -> flush ();
     }
 }
